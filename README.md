@@ -4,7 +4,7 @@ A full-stack ChatGPT clone with persistent conversations, context-aware AI repli
 
 ## GitHub Repository
 
-[<GITHUB_LINK_HERE>](<GITHUB_LINK_HERE>)
+link: https://github.com/RoyBenTzur/MyChatGPT.git
 
 ---
 

@@ -1,0 +1,113 @@
+{
+  "info": {
+    "_postman_id": "mychatgpt-api-collection",
+    "name": "Chat API",
+    "description": "MyChatGPT — Full Stack ChatGPT Clone API endpoints.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Start New Conversation",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"conversationId\": null,\n    \"message\": \"Hello! What can you help me with today?\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8000/api/chat",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8000",
+          "path": ["api", "chat"]
+        },
+        "description": "Send a message with conversationId: null to start a brand-new conversation. Returns the new conversationId and the AI reply."
+      }
+    },
+    {
+      "name": "Continue Existing Conversation",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"conversationId\": 1,\n    \"message\": \"Tell me more about that.\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8000/api/chat",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8000",
+          "path": ["api", "chat"]
+        },
+        "description": "Continue a conversation by passing the existing conversationId. The server sends the full message history to OpenAI for context-aware replies."
+      }
+    },
+    {
+      "name": "Get All Conversations",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8000/api/conversations",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8000",
+          "path": ["api", "conversations"]
+        },
+        "description": "Retrieve all conversations ordered newest first. Used to populate the sidebar."
+      }
+    },
+    {
+      "name": "Get Conversation Messages",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8000/api/conversations/1/messages",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8000",
+          "path": ["api", "conversations", "1", "messages"]
+        },
+        "description": "Load all messages for conversation with id=1, in chronological order."
+      }
+    },
+    {
+      "name": "Delete Conversation",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8000/api/conversations/1",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8000",
+          "path": ["api", "conversations", "1"]
+        },
+        "description": "Delete conversation with id=1. All associated messages are removed via cascade delete."
+      }
+    }
+  ]
+}

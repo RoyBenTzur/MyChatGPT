@@ -1,0 +1,45 @@
+.sidebar {
+    width: 260px;
+    min-width: 260px;
+    background-color: #171717;
+    border-right: 1px solid #2f2f2f;
+    display: flex;
+    flex-direction: column;
+    padding: 12px 8px;
+    overflow: hidden;
+}
+
+.new-chat-btn {
+    background-color: transparent;
+    border: 1px solid #3f3f3f;
+    color: #ececec;
+    padding: 10px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.875rem;
+    margin-bottom: 14px;
+    text-align: left;
+    transition: background-color 0.15s;
+    flex-shrink: 0;
+}
+
+.new-chat-btn:hover {
+    background-color: #2a2a2a;
+}
+
+.conversations-list {
+    flex: 1;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.conversations-list::-webkit-scrollbar {
+    width: 4px;
+}
+
+.conversations-list::-webkit-scrollbar-thumb {
+    background-color: #3f3f3f;
+    border-radius: 2px;
+}

@@ -1,0 +1,13 @@
+.app {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* Home layout: sidebar on the left, chat area fills the rest */
+.main-layout {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+}

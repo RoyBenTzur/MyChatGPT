@@ -1,10 +1,10 @@
 # MyChatGPT
 
-A full-stack ChatGPT clone with persistent conversations, context-aware AI replies, and a clean dark-themed UI.
+A full-stack ChatGPT clone with persistent conversations, context-aware AI replies, and a modern dark-themed UI.
 
 ## GitHub Repository
 
-link: https://github.com/RoyBenTzur/MyChatGPT.git
+https://github.com/RoyBenTzur/MyChatGPT.git
 
 ---
 
@@ -17,6 +17,7 @@ link: https://github.com/RoyBenTzur/MyChatGPT.git
 | Database | MySQL with SQLAlchemy ORM |
 | AI | OpenAI GPT-4o-mini |
 | HTTP client | axios |
+| Deployment | Docker + Docker Compose |
 
 ---
 
@@ -24,23 +25,26 @@ link: https://github.com/RoyBenTzur/MyChatGPT.git
 
 ```
 MyChatGpt/
+  docker-compose.yml       # Orchestrates all 3 services
   Backend/
+    Dockerfile
     src/
-      models/        # SQLAlchemy entity models + Pydantic DTOs
-      services/      # ConversationService, OpenAIService
-      controllers/   # FastAPI routers
-      utils/         # DB engine + session factory
-      config.py      # loads .env
-      app.py         # entry point
+      models/              # SQLAlchemy entity models + Pydantic DTOs
+      services/            # ConversationService, OpenAIService
+      controllers/         # FastAPI routers
+      utils/               # DB engine + session factory
+      config.py            # loads .env
+      app.py               # entry point
     requirements.txt
-    .env.example
     Chat API.postman_collection.json
   Frontend/
+    Dockerfile
+    nginx.conf             # Routes /api to backend, serves React
     src/
-      Models/        # TypeScript interfaces
-      Services/      # axios API clients
-      Components/    # React components
-      Utils/         # constants
+      Models/              # TypeScript interfaces
+      Services/            # axios API clients
+      Components/          # React components
+      Utils/               # AppConfig (API base URL)
     package.json
 ```
 
@@ -48,13 +52,33 @@ MyChatGpt/
 
 ## Getting Started
 
-### Prerequisites
+### Option 1 — Docker (recommended)
 
-- Python 3.11+
-- Node.js 18+
-- MySQL running locally
+**Prerequisites:** Docker + Docker Compose installed
 
-### Backend
+```bash
+# 1. Clone the repo
+git clone https://github.com/RoyBenTzur/MyChatGPT.git
+cd MyChatGPT
+
+# 2. Create a .env file at the project root:
+#    OPENAI_API_KEY=your_openai_key
+#    DB_PASSWORD=your_mysql_password
+#    DB_NAME=chat_db
+
+# 3. Start everything
+docker-compose up -d --build
+```
+
+Open `http://localhost` in your browser. All three services (frontend, backend, database) start automatically.
+
+---
+
+### Option 2 — Local development
+
+**Prerequisites:** Python 3.11+, Node.js 18+, MySQL running locally
+
+#### Backend
 
 ```bash
 cd Backend
@@ -67,27 +91,29 @@ env\Scripts\activate          # Windows
 # Install dependencies:
 pip install -r requirements.txt
 
-# Configure environment:
-cp .env.example .env
-# Edit .env — fill in your OpenAI key and MySQL credentials
+# Create and configure .env inside Backend/:
+#   OPENAI_API_KEY=your_openai_key
+#   DB_HOST=localhost
+#   DB_USER=root
+#   DB_PASSWORD=your_mysql_password
+#   DB_NAME=chat_db
 
 # Run the server (from Backend/src/):
 cd src
 uvicorn app:app --reload --port 8000
 ```
 
-The API will be available at `http://localhost:8000`.  
-Interactive docs: `http://localhost:8000/docs`
+API available at `http://localhost:8000` — interactive docs at `http://localhost:8000/docs`
 
-### Frontend
+#### Frontend
 
 ```bash
 cd Frontend
 npm install
-npm run dev
+npm start
 ```
 
-Open [http://localhost:5173](http://localhost:5173) in your browser.
+Open `http://localhost:5173` in your browser.
 
 ---
 

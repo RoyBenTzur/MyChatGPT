@@ -1,6 +1,12 @@
 # MyChatGPT
 
-A full-stack ChatGPT clone with persistent conversations, context-aware AI replies, and a modern dark-themed UI.
+MyChatGPT is a full-stack web application that replicates the core experience of ChatGPT. It lets you have real conversations with an AI, where each message is sent to OpenAI's GPT-4o-mini model and the full conversation history is included with every request, so the AI always has context of what was said before.
+
+Every conversation is saved to a MySQL database, meaning your chat history persists between sessions. You can create new conversations, switch between them, and delete ones you no longer need, all from the sidebar.
+
+On the technical side, the frontend is built with React and TypeScript, communicating with a Python FastAPI backend through a REST API. The backend handles all the AI logic, conversation management, and database operations using SQLAlchemy ORM.
+
+The UI was designed with a modern dark aesthetic inspired by tools like Bolt.new. It features a deep black background with a blue ambient glow, glassmorphism effects on the navigation and sidebar, smooth animations, and a floating input card that sits centered on the screen when no conversation is active.
 
 ## GitHub Repository
 

@@ -5,6 +5,13 @@
   overflow: hidden;
 }
 
+main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
 /* Home layout: sidebar on the left, chat area fills the rest */
 .main-layout {
   display: flex;

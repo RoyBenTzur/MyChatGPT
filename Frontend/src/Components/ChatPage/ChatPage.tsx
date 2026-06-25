@@ -44,9 +44,17 @@ function ChatPage({
         if (currentConversationId !== null) {
             loadMessages();
         } else {
-            setMessages([]);  // New chat — clear the view.
+            setMessages([]);
+            setInput("");
+            if (textareaRef.current) textareaRef.current.style.height = "auto";
+            textareaRef.current?.focus();
         }
     }, [currentConversationId]);
+
+    // Focus the textarea on initial page load:
+    useEffect(() => {
+        textareaRef.current?.focus();
+    }, []);
 
     // Keep the view scrolled to the latest message:
     useEffect(() => {
@@ -110,6 +118,7 @@ function ChatPage({
             console.error("Failed to send message:", err);
         } finally {
             setIsLoading(false);
+            textareaRef.current?.focus();
         }
     };
 
@@ -118,7 +127,8 @@ function ChatPage({
             <div className="messages-container">
                 {messages.length === 0 && (
                     <div className="empty-chat">
-                        <h2>How can I help you today?</h2>
+                        <h2>How can I <span className="accent-word">help</span> you today?</h2>
+                        <p>Ask me anything — I remember our conversation.</p>
                     </div>
                 )}
                 {messages.map((m) =>
@@ -132,24 +142,26 @@ function ChatPage({
             </div>
 
             <div className="input-area">
-                <textarea
-                    ref={textareaRef}
-                    className="chat-input"
-                    value={input}
-                    onChange={handleInputChange}
-                    onKeyDown={handleKeyDown}
-                    placeholder="Message MyChatGPT…"
-                    rows={1}
-                    disabled={isLoading}
-                />
-                <button
-                    className="send-btn"
-                    onClick={handleSend}
-                    disabled={!input.trim() || isLoading}
-                    title="Send message"
-                >
-                    ↑
-                </button>
+                <div className="input-wrapper">
+                    <textarea
+                        ref={textareaRef}
+                        className="chat-input"
+                        value={input}
+                        onChange={handleInputChange}
+                        onKeyDown={handleKeyDown}
+                        placeholder="Message MyChatGPT…"
+                        rows={1}
+                        disabled={isLoading}
+                    />
+                    <button
+                        className="send-btn"
+                        onClick={handleSend}
+                        disabled={!input.trim() || isLoading}
+                        title="Send message"
+                    >
+                        ↑
+                    </button>
+                </div>
             </div>
         </div>
     );

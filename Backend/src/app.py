@@ -30,7 +30,7 @@ app = FastAPI(title="MyChatGPT API", lifespan=lifespan)
 # Allow requests from the Vite dev server:
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173"],  # Vite default port.
+    allow_origins=["*"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],

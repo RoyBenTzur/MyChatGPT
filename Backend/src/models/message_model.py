@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, Text, DateTime, Enum, ForeignKey
+from sqlalchemy import Column, Integer, String, DateTime, Enum, ForeignKey
 from sqlalchemy.orm import relationship
 from datetime import datetime
 from utils.database import Base
@@ -14,7 +14,7 @@ class MessageModel(Base):
         ForeignKey("conversations.id", ondelete="CASCADE"),
     )
     role = Column(Enum("user", "assistant"))  # Who authored this message.
-    content = Column(Text)
+    content = Column(String(4000))
     created_at = Column(DateTime, default=datetime.utcnow)
 
     conversation = relationship("ConversationModel", back_populates="messages")

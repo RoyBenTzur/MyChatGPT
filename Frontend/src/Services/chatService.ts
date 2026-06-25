@@ -1,5 +1,5 @@
 import axios from "axios";
-import { API_BASE_URL } from "../Utils/constants";
+import { API_BASE_URL } from "../Utils/AppConfig";
 
 // Request shape for POST /api/chat:
 interface ChatRequest {

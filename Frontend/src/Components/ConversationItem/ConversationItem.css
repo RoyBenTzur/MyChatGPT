@@ -3,23 +3,25 @@
     align-items: center;
     justify-content: space-between;
     padding: 8px 12px;
-    border-radius: 6px;
+    border-radius: 8px;
     cursor: pointer;
-    min-height: 42px;
-    transition: background-color 0.15s;
+    min-height: 40px;
+    border: 1px solid transparent;
+    transition: background-color 0.15s, border-color 0.15s;
 }
 
 .conversation-item:hover {
-    background-color: #2a2a2a;
+    background-color: rgba(255, 255, 255, 0.06);
 }
 
 .conversation-item.selected {
-    background-color: #2a2a2a;
+    background-color: rgba(20, 136, 252, 0.08);
+    border-color: rgba(20, 136, 252, 0.2);
 }
 
 .conversation-title {
-    font-size: 0.85rem;
-    color: #d1d1d1;
+    font-size: 0.825rem;
+    color: var(--text-secondary);
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -27,17 +29,22 @@
     min-width: 0;
 }
 
+.conversation-item.selected .conversation-title {
+    color: var(--text-primary);
+}
+
 .delete-btn {
     background: none;
     border: none;
     cursor: pointer;
-    font-size: 0.8rem;
+    font-size: 0.75rem;
     padding: 3px 5px;
     border-radius: 4px;
     opacity: 0;
     flex-shrink: 0;
     margin-left: 6px;
-    transition: opacity 0.15s, background-color 0.15s;
+    transition: opacity 0.15s, background-color 0.15s, color 0.15s;
+    color: var(--text-muted);
 }
 
 .conversation-item:hover .delete-btn {
@@ -45,5 +52,6 @@
 }
 
 .delete-btn:hover {
-    background-color: #3f3f3f;
+    background-color: rgba(255, 80, 80, 0.12);
+    color: #ff6b6b;
 }

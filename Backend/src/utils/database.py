@@ -1,11 +1,10 @@
 from sqlalchemy import create_engine, text
-from sqlalchemy.orm import sessionmaker, DeclarativeBase, Session
+from sqlalchemy.orm import sessionmaker, declarative_base, Session
 from typing import Generator
 from config import config
 
 
-class Base(DeclarativeBase):
-    pass
+Base = declarative_base()
 
 
 # Create the database schema if it does not exist yet:

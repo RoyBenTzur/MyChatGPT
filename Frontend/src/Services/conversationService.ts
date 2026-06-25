@@ -1,7 +1,7 @@
 import axios from "axios";
 import { Conversation } from "../Models/Conversation";
 import { Message } from "../Models/Message";
-import { API_BASE_URL } from "../Utils/constants";
+import { API_BASE_URL } from "../Utils/AppConfig";
 
 class ConversationService {
     // Fetch all conversations ordered newest first:

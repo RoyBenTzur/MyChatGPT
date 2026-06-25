@@ -4,6 +4,7 @@ import NavMenu from "./Components/NavMenu/NavMenu";
 import Sidebar from "./Components/Sidebar/Sidebar";
 import ChatPage from "./Components/ChatPage/ChatPage";
 import AboutPage from "./Components/AboutPage/AboutPage";
+import NotFoundPage from "./Components/NotFoundPage/NotFoundPage";
 import "./App.css";
 
 function App() {
@@ -36,27 +37,30 @@ function App() {
     return (
         <div className="app">
             <NavMenu />
-            <Routes>
-                <Route
-                    path="/"
-                    element={
-                        <div className="main-layout">
-                            <Sidebar
-                                currentConversationId={currentConversationId}
-                                onSelectConversation={setCurrentConversationId}
-                                onNewChat={handleNewChat}
-                                refreshKey={sidebarRefreshKey}
-                            />
-                            <ChatPage
-                                currentConversationId={currentConversationId}
-                                onConversationCreated={handleConversationCreated}
-                                onConversationIdChange={setCurrentConversationId}
-                            />
-                        </div>
-                    }
-                />
-                <Route path="/about" element={<AboutPage />} />
-            </Routes>
+            <main>
+                <Routes>
+                    <Route
+                        path="/"
+                        element={
+                            <div className="main-layout">
+                                <Sidebar
+                                    currentConversationId={currentConversationId}
+                                    onSelectConversation={setCurrentConversationId}
+                                    onNewChat={handleNewChat}
+                                    refreshKey={sidebarRefreshKey}
+                                />
+                                <ChatPage
+                                    currentConversationId={currentConversationId}
+                                    onConversationCreated={handleConversationCreated}
+                                    onConversationIdChange={setCurrentConversationId}
+                                />
+                            </div>
+                        }
+                    />
+                    <Route path="/about" element={<AboutPage />} />
+                    <Route path="*" element={<NotFoundPage />} />
+                </Routes>
+            </main>
         </div>
     );
 }
